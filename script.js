@@ -18,7 +18,7 @@ async function getQuote() {
             authorText.innerText = data.quoteAuthor;
         }
         // reduce font size for long quotes
-        if (data.quoteText.length > 50) {
+        if (data.quoteText.length > 120) {
             quoteText.classList.add('long-quote');
         } else {
             quoteText.classList.remove('long-quote')
@@ -29,6 +29,19 @@ async function getQuote() {
     }
 
 }
+
+// tweet quote
+function tweetQuote() {
+    const quote = quoteText.innerText;
+    const author = authorText.innerText;
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${quote} - ${author}`;
+    window.open(twitterUrl, '_blank');
+}
+
+// event listeners
+newQuoteBtn.addEventListener('click', getQuote);
+twitterBtn.addEventListener('click', tweetQuote);
+
 
 // on load
 getQuote();
